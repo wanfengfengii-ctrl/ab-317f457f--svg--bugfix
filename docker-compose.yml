@@ -1,0 +1,19 @@
+services:
+  web:
+    build:
+      context: .
+      target: web
+    image: magstripe-decoder-web
+    ports:
+      # WEB_PORT 覆盖宿主机映射端口，容器内固定监听 80
+      - "${WEB_PORT:-8080}:80"
+    restart: unless-stopped
+
+  verify:
+    build:
+      context: .
+      target: verify
+    image: magstripe-decoder-verify
+    environment:
+      CI: "true"
+    # 一次性服务：运行单元测试、生产构建与 Playwright E2E 后退出（命令见 Dockerfile）

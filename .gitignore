@@ -1,0 +1,10 @@
+.DS_Store
+.env
+node_modules/
+__pycache__/
+
+# 构建与测试产物
+dist/
+playwright-report/
+test-results/
+coverage/

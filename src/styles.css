@@ -101,14 +101,24 @@ th { color: var(--muted); font-weight: 600; }
 .codes-table { margin-top: 14px; }
 .amb-table td.digits { color: var(--warn); font-weight: 700; }
 
-.pulse-diagram {
-  width: 100%;
-  height: auto;
-  background: #0c111c;
+/* 画布按内容宽度生成；窄视口下横向滚动而非压缩，保证位标记不重叠 */
+.diagram-scroll {
+  margin-top: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
-  margin-top: 8px;
+  background: #0c111c;
 }
+.pulse-diagram {
+  display: block;
+  /* width/height 由 SVG 属性按内容给定，min-width 阻止 flex/容器把它压缩回重叠宽度 */
+  min-width: max-content;
+  height: auto;
+  background: #0c111c;
+}
+.diagram-scroll::-webkit-scrollbar { height: 10px; }
+.diagram-scroll::-webkit-scrollbar-thumb { background: var(--border); border-radius: 5px; }
 .dg-title { fill: var(--muted); font-size: 14px; }
 .legend-text { fill: var(--muted); font-size: 12px; }
 .bar { stroke: #0c111c; stroke-width: 1; }

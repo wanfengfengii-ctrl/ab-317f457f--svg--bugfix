@@ -101,13 +101,22 @@ th { color: var(--muted); font-weight: 600; }
 .codes-table { margin-top: 14px; }
 .amb-table td.digits { color: var(--warn); font-weight: 700; }
 
-.pulse-diagram {
-  width: 100%;
-  height: auto;
-  background: #0c111c;
+.diagram-scroll {
+  margin-top: 8px;
+  overflow-x: auto;
+  overflow-y: hidden;
   border: 1px solid var(--border);
   border-radius: 8px;
-  margin-top: 8px;
+  background: #0c111c;
+  /* 窄视口提示可横向滚动 */
+  scrollbar-color: var(--border) #0c111c;
+}
+.pulse-diagram {
+  display: block;
+  /* 宽度跟随容器，但内联 min-width 保证不被压缩到重叠；超出由 .diagram-scroll 横向滚动 */
+  width: 100%;
+  max-width: none;
+  height: auto;
 }
 .dg-title { fill: var(--muted); font-size: 14px; }
 .legend-text { fill: var(--muted); font-size: 12px; }
